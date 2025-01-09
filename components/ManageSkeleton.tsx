@@ -42,16 +42,7 @@ export default function ManageProductsSkeleton() {
         <Skeleton variant="rectangular" width="100%" height={100} sx={{ mb: 2 }} />
         <Skeleton variant="rectangular" width="100%" height={40} sx={{ mb: 2 }} />
         <Skeleton variant="rectangular" width="100%" height={40} sx={{ mb: 2 }} />
-        <FormControl fullWidth sx={{ mt: 2 }}>
-          <InputLabel>
-            <Skeleton variant="text" width="60%" height={20} />
-          </InputLabel>
-          <Select disabled>
-            <MenuItem>
-              <Skeleton variant="text" width="100%" height={20} />
-            </MenuItem>
-          </Select>
-        </FormControl>
+        <Skeleton variant="rectangular" width="100%" height={40} sx={{ mb: 2 }} />
         <Skeleton variant="rectangular" width="50%" height={40} sx={{ mt: 4 }} />
       </Box>
     </Box>
