@@ -5,20 +5,23 @@ import { fetchCarts, Product } from "@/services/cartService";
 import { ProductCard } from "@/components/ProductCard";
 import IndexSkeleton from "@/components/IndexSkeleton";
 
+interface CartItem extends Product {
+  quantity: number;
+}
+
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [cart, setCart] = useState<any[]>([]);
+  const [cart, setCart] = useState<CartItem[]>([]);
   const [productName, setProductName] = useState<string>("");
   const [loading, setLoading] = useState(true);
 
-  // ดึงข้อมูลสินค้า
   useEffect(() => {
     setLoading(true);
     fetchCarts()
       .then((res) => {
-        setProducts(res); // เก็บสินค้าใน products
-        setFilteredProducts(res); // ตั้งค่าข้อมูลเริ่มต้นให้ filteredProducts
+        setProducts(res);
+        setFilteredProducts(res);
         setLoading(false);
       })
       .catch((err) => {
@@ -26,7 +29,6 @@ export default function Home() {
       });
   }, []);
 
-  // อัปเดตสินค้าเมื่อคำค้นเปลี่ยน
   useEffect(() => {
     const filtered = products?.filter((product) =>
       product.title?.toLowerCase().includes(productName.toLowerCase())
@@ -49,7 +51,7 @@ export default function Home() {
     }
   };
 
-  const handleRemoveFromCart = (id: string) => {
+  const handleRemoveFromCart = (id: number) => {
     setCart(cart.filter((item) => item.id !== id));
   };
 
@@ -65,7 +67,6 @@ export default function Home() {
     <Layout>
       {loading ? <IndexSkeleton /> : 
       <Box display="flex" height="85vh">
-        {/* ฝั่งซ้าย */}
         
         <Box
           flex="2"
@@ -105,13 +106,12 @@ export default function Home() {
                   </Grid>
                 ))
               ) : (
-                <Typography>No products found</Typography> // แสดงข้อความเมื่อไม่มีสินค้า
+                <Typography>No products found</Typography>
               )}
             </Grid>
           </Box>
         </Box>
 
-        {/* ฝั่งขวา */}
         <Box flex="1" p={1}>
           <Box
             p={1}

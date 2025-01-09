@@ -4,7 +4,6 @@ import { Box, Grid, Skeleton,FormControl, InputLabel, Select, MenuItem } from "@
 export default function ManageProductsSkeleton() {
   return (
     <Box display="flex" height="85vh">
-      {/* ซ้าย: Skeleton สำหรับรายการสินค้า */}
       <Box
         flex="2"
         p={2}
@@ -12,9 +11,7 @@ export default function ManageProductsSkeleton() {
           borderRight: "1px solid #ccc",
         }}
       >
-        {/* Skeleton ช่องค้นหา */}
         <Skeleton variant="rectangular" height={40} width="100%" sx={{ mb: 2 }} />
-        {/* Skeleton สำหรับรายการสินค้า */}
         <Box sx={{ overflowY: "auto", height: "90%" }}>
           <Grid container spacing={2}>
             {Array.from({ length: 5 }).map((_, index) => (
@@ -32,7 +29,6 @@ export default function ManageProductsSkeleton() {
         </Box>
       </Box>
 
-      {/* ขวา: Skeleton สำหรับฟอร์มเพิ่มสินค้า */}
       <Box
         flex="1"
         p={2}
@@ -41,17 +37,11 @@ export default function ManageProductsSkeleton() {
           height: "100%",
         }}
       >
-        {/* Skeleton หัวข้อ */}
         <Skeleton variant="text" width="60%" height={30} sx={{ mb: 2 }} />
-        {/* Skeleton ปุ่มอัพโหลดรูป */}
         <Skeleton variant="rectangular" width="50%" height={40} sx={{ mb: 2 }} />
-        {/* Skeleton ตัวอย่างรูป */}
-        <Skeleton variant="rectangular" width="100%" height={200} sx={{ mb: 2 }} />
-        {/* Skeleton ช่อง Title */}
+        <Skeleton variant="rectangular" width="100%" height={100} sx={{ mb: 2 }} />
         <Skeleton variant="rectangular" width="100%" height={40} sx={{ mb: 2 }} />
-        {/* Skeleton ช่อง Price */}
         <Skeleton variant="rectangular" width="100%" height={40} sx={{ mb: 2 }} />
-        {/* Skeleton ช่อง Category */}
         <FormControl fullWidth sx={{ mt: 2 }}>
           <InputLabel>
             <Skeleton variant="text" width="60%" height={20} />
@@ -62,7 +52,6 @@ export default function ManageProductsSkeleton() {
             </MenuItem>
           </Select>
         </FormControl>
-        {/* Skeleton ปุ่ม Add Product */}
         <Skeleton variant="rectangular" width="50%" height={40} sx={{ mt: 4 }} />
       </Box>
     </Box>

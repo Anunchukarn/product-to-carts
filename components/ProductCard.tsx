@@ -1,8 +1,8 @@
-import { Box, Typography, IconButton, Grid, CardMedia, Button, Card, CardContent } from "@mui/material";
+import { Box, Typography, Grid, CardMedia, Button, Card, CardContent } from "@mui/material";
 import { Product } from "@/services/cartService";
 
 interface ProductCardProps {
-    productList: Product[]; // Array ของสินค้า
+    productList: Product[];
     onAddToCart?: (product: Product) => void;
     onRemoveProduct?: (product: Product) => void;
 }

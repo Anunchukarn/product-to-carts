@@ -10,7 +10,7 @@ export interface Product {
 
 export const fetchCarts = async () => {
  
-        const response = await api.get('https://dummyjson.com/products');
+        const response = await api.get('/products');
         console.log(response.data);
 
         const results = response.data.products;

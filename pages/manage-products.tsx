@@ -4,6 +4,7 @@ import { fetchCarts, Product } from "@/services/cartService";
 import { ProductCard } from "@/components/ProductCard";
 import Layout from "@/components/Layout";
 import ManageProductsSkeleton from "@/components/ManageSkeleton";
+import Image from "next/image";
 
 export default function ManageProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -17,16 +18,15 @@ export default function ManageProductsPage() {
     category: "",
   });
   const [productName, setProductName] = useState<string>("");
-  const [selectedImage, setSelectedImage] = useState<File | null>(null); // สำหรับเก็บไฟล์รูปภาพที่เลือก
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // ดึงข้อมูลสินค้า
   useEffect(() => {
     setLoading(true);
     fetchCarts()
       .then((res) => {
-        setProducts(res); // เก็บสินค้าใน products
-        setFilteredProducts(res); // ตั้งค่า filteredProducts ด้วยสินค้าเริ่มต้น
+        setProducts(res); 
+        setFilteredProducts(res);
         const uniqueCategories = Array.from(
           new Set(res.map((product: Product) => product.category))
         ) as string[];
@@ -38,7 +38,6 @@ export default function ManageProductsPage() {
       });
   }, []);
 
-  // อัปเดตสินค้าเมื่อคำค้นเปลี่ยน
   useEffect(() => {
     const filtered = products?.filter((product) =>
       product.title?.toLowerCase().includes(productName.toLowerCase())
@@ -46,7 +45,6 @@ export default function ManageProductsPage() {
     setFilteredProducts(filtered);
   }, [productName, products]);
 
-  // เพิ่มสินค้าใหม่
   const handleAddProduct = () => {
     const updatedProducts = [
       ...products,
@@ -61,17 +59,17 @@ export default function ManageProductsPage() {
       thumbnail: "",
       category: "",
     });
-    setSelectedImage(null); // รีเซ็ตไฟล์ที่เลือก
+    setSelectedImage(null);
   };
 
-  // ลบสินค้า
+
   const handleRemoveProduct = (id: number) => {
     const updatedProducts = products.filter((product) => product.id !== id);
     setProducts(updatedProducts);
     setFilteredProducts(updatedProducts);
   };
 
-  // อัปเดต thumbnail เมื่อเลือกไฟล์
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -87,7 +85,6 @@ export default function ManageProductsPage() {
     <Layout>
       {loading ? <ManageProductsSkeleton /> : 
       <Box display="flex" height="85vh">
-        {/* ซ้าย: รายการสินค้า */}
         <Box
           flex="2"
           p={2}
@@ -122,7 +119,6 @@ export default function ManageProductsPage() {
           </Box>
         </Box>
 
-        {/* ขวา: แบบฟอร์มเพิ่มสินค้า */}
         <Box
           flex="1"
           p={2}
@@ -144,7 +140,7 @@ export default function ManageProductsPage() {
           {selectedImage && (
             <Box mt={2}>
               <Typography>Selected Image:</Typography>
-              <img
+              <Image
                 src={URL.createObjectURL(selectedImage)}
                 alt="Preview"
                 style={{ maxWidth: "100%", maxHeight: "200px" }}
@@ -170,7 +166,7 @@ export default function ManageProductsPage() {
             }
             sx={{ mt: 2 }}
           />
-          {/* ฟอร์มสำหรับเลือกไฟล์รูปภาพ */}
+
           <FormControl fullWidth sx={{ mt: 2 }}>
             <InputLabel>Category</InputLabel>
             <Select

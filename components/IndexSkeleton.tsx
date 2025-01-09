@@ -4,7 +4,7 @@ import { Box, Skeleton, Grid, Card, CardContent, Typography } from "@mui/materia
 const IndexSkeleton = () => {
     return (
         <Box display="flex" height="85vh" >
-            {/* ฝั่งซ้าย */}
+
             <Box
                     flex="2"
                     p={2}
@@ -12,9 +12,9 @@ const IndexSkeleton = () => {
                       borderRight: "1px solid #ccc",
                     }}
                   >
-                    {/* Skeleton ช่องค้นหา */}
+
                     <Skeleton variant="rectangular" height={40} width="100%" sx={{ mb: 2 }} />
-                    {/* Skeleton สำหรับรายการสินค้า */}
+
                     <Box sx={{ overflowY: "auto", height: "90%" }}>
                       <Grid container spacing={2}>
                         {Array.from({ length: 5 }).map((_, index) => (
@@ -32,7 +32,7 @@ const IndexSkeleton = () => {
                     </Box>
                   </Box>
 
-            {/* ฝั่งขวา */}
+
             <Box flex="1" p={1}>
                 <Box
                     p={1}
