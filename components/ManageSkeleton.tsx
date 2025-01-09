@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Skeleton,FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { Box, Grid, Skeleton} from "@mui/material";
 
 export default function ManageProductsSkeleton() {
   return (
